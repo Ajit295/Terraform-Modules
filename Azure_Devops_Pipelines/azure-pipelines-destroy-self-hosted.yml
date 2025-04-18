@@ -1,0 +1,48 @@
+
+trigger:
+- none
+
+pool:
+  name: Terraform Agent
+  demands:
+   - agent.name -equals Terraform-Agent
+
+stages:
+  
+  # Destroy the resources created by terraform
+  - stage: tfdestroy
+    jobs:
+      - job: destroy
+        steps: 
+      
+          # Initaite terraform to install provider files and dependencies 
+          # Also defined backed Azure storge accouunt to store terraform.state file to manage centrally
+           - task: TerraformTaskV4@4
+             displayName: Init
+             inputs:
+              provider: 'azurerm'
+              command: 'init'
+              backendServiceArm: 'Azure-Connect'
+              backendAzureRmResourceGroupName: 'Terraform-RG'
+              backendAzureRmStorageAccountName: 'terraformbackend23091998'
+              backendAzureRmContainerName: 'terraform-state'
+              backendAzureRmKey: 'terraform.tfstate'
+
+          # Create plan of the resources to be created
+           - task: TerraformTaskV4@4
+             displayName: Plan
+             inputs:
+               provider: 'azurerm'
+               command: 'plan'
+               environmentServiceNameAzureRM: 'Azure-Connect'
+               commandOptions: '-input=false'
+
+          # Destoy the terraform resources 
+           - task: TerraformTaskV4@4
+             displayName: Destroy
+             inputs:
+               provider: 'azurerm'
+               command: 'destroy'
+               environmentServiceNameAzureRM: 'Azure-connect'
+               
+           

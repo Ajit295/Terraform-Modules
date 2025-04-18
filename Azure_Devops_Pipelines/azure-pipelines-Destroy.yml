@@ -1,0 +1,73 @@
+
+trigger:
+- none
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+stages:
+  - stage: tfvalidate
+    jobs:
+      - job: validate
+        continueOnError: false
+        steps:  
+        
+          - task: TerraformInstaller@1
+            displayName: Terraform install
+            inputs:
+              terraformVersion: 'latest'
+
+          - task: TerraformTaskV4@4
+            displayName: Init
+            inputs:
+              provider: 'azurerm'
+              command: 'init'
+              backendServiceArm: 'Azure-Connect'
+              backendAzureRmResourceGroupName: 'Terraform-RG'
+              backendAzureRmStorageAccountName: 'terraformbackend23091998'
+              backendAzureRmContainerName: 'terraform-state'
+              backendAzureRmKey: 'terraform.tfstate'
+              
+          - task: TerraformTaskV4@4
+            displayName: Validate
+            inputs:
+              provider: 'azurerm'
+              command: 'validate'
+  
+  - stage: tfdeploy
+    condition: succeeded('tfvalidate')
+    dependsOn: tfvalidate
+    jobs:
+      - job: Destroy
+        steps: 
+           - task: TerraformInstaller@1
+             displayName: Terraform install
+             inputs:
+              terraformVersion: 'latest'
+            
+           - task: TerraformTaskV4@4
+             displayName: Init
+             inputs:
+              provider: 'azurerm'
+              command: 'init'
+              backendServiceArm: 'Azure-Connect'
+              backendAzureRmResourceGroupName: 'Terraform-RG'
+              backendAzureRmStorageAccountName: 'terraformbackend23091998'
+              backendAzureRmContainerName: 'terraform-state'
+              backendAzureRmKey: 'terraform.tfstate'
+
+           - task: TerraformTaskV4@4
+             displayName: Plan
+             inputs:
+               provider: 'azurerm'
+               command: 'plan'
+               environmentServiceNameAzureRM: 'Azure-Connect'
+               commandOptions: '-input=false'
+
+          # Destoy the terraform resources 
+           - task: TerraformTaskV4@4
+             displayName: Destroy
+             inputs:
+               provider: 'azurerm'
+               command: 'destroy'
+               environmentServiceNameAzureRM: 'Azure-Connect'
