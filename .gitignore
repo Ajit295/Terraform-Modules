@@ -1,10 +1,7 @@
-main.tf
 main.tfplan
 providers.tf
 terraform.tfstate
 README.md
 terraform.tfstate.backup
-terraform.tfvars
-variables.tf
 .terraform
 .terraform.lock.hcl
