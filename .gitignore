@@ -6,3 +6,5 @@ README.md
 terraform.tfstate.backup
 terraform.tfvars
 variables.tf
+.terraform
+.terraform.lock.hcl
