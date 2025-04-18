@@ -11,13 +11,13 @@ module "ResourceGroup" {
 #     location = module.ResourceGroup.location_output
 # }
 
-# module "VirtualNetwork" {
-#   source              = "./Modules/VirtualNetwork"
-#   base_name           = "Ajit-Test-Vnet"
-#   resource_group_name = module.ResourceGroup.rg_name_output
-#   location            = module.ResourceGroup.location_output
-#   depends_on          = [module.ResourceGroup]
-# }
+module "VirtualNetwork" {
+  source              = "./Modules/VirtualNetwork"
+  base_name           = "Ajit-Test-Vnet"
+  resource_group_name = module.ResourceGroup.rg_name_output
+  location            = module.ResourceGroup.location_output
+  depends_on          = [module.ResourceGroup]
+}
 
 # module "Subnet" {
 #   source                 = "./Modules/Subnets"
