@@ -11,22 +11,22 @@ module "ResourceGroup" {
 #     location = module.ResourceGroup.location_output
 # }
 
-module "VirtualNetwork" {
-  source              = "./Modules/VirtualNetwork"
-  base_name           = "Ajit-Test-Vnet"
-  resource_group_name = module.ResourceGroup.rg_name_output
-  location            = module.ResourceGroup.location_output
-  depends_on          = [module.ResourceGroup]
-}
+# module "VirtualNetwork" {
+#   source              = "./Modules/VirtualNetwork"
+#   base_name           = "Ajit-Test-Vnet"
+#   resource_group_name = module.ResourceGroup.rg_name_output
+#   location            = module.ResourceGroup.location_output
+#   depends_on          = [module.ResourceGroup]
+# }
 
-module "Subnet" {
-  source                 = "./Modules/Subnets"
-  base_name              = "Subnet-Test"
-  resource_group_name    = module.ResourceGroup.rg_name_output
-  virtual_network_name   = module.VirtualNetwork.Vnet_name_output
-  depends_on             = [module.VirtualNetwork, module.ResourceGroup]
-  no_of_virtual_machines = var.no_of_virtual_machines
-}
+# module "Subnet" {
+#   source                 = "./Modules/Subnets"
+#   base_name              = "Subnet-Test"
+#   resource_group_name    = module.ResourceGroup.rg_name_output
+#   virtual_network_name   = module.VirtualNetwork.Vnet_name_output
+#   depends_on             = [module.VirtualNetwork, module.ResourceGroup]
+#   no_of_virtual_machines = var.no_of_virtual_machines
+# }
 
 # module "PublicIP" {
 #   source                 = "./Modules/PublicIP"
@@ -111,11 +111,11 @@ module "Subnet" {
 #   depends_on = [ module.LinuxVirtualMachine ]
 # }
 
-module "vmss_network" {
-  source = "./Modules/VMSS"
-  resource_group_name = module.ResourceGroup.rg_name_output
-  location = module.ResourceGroup.location_output
-  subnet_id = module.Subnet.subnet_id
+# module "vmss_network" {
+#   source = "./Modules/VMSS"
+#   resource_group_name = module.ResourceGroup.rg_name_output
+#   location = module.ResourceGroup.location_output
+#   subnet_id = module.Subnet.subnet_id
   
-}
+# }
 
