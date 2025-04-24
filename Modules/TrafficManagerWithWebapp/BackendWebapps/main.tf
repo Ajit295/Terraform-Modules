@@ -9,7 +9,7 @@ resource "azurerm_service_plan" "backend_webapp_service_plan" {
 
 resource "azurerm_windows_web_app" "backend_webapps" {
   for_each = var.webapp_environment
-  name                = each.key
+  name                = each.value.webapp_name
   resource_group_name = var.resource_group_name
   location            = each.value.service_plan_location
   service_plan_id     = azurerm_service_plan.backend_webapp_service_plan[each.key].id
