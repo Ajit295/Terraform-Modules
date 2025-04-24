@@ -1,5 +1,22 @@
 no_of_virtual_machines = 2
 
+webapp_environment = {
+  "northeuropeplan09986" = {
+    service_plan_os_type  = "Windows"
+    webapp_name           = "primarywebapp09876"
+    service_plan_location = "North Europe"
+    service_plan_sku_name = "S1"
+  }
+
+  "uksouthplan647580" = {
+    service_plan_os_type  = "Windows"
+    webapp_name           = "secondarywebapp35647"
+    service_plan_location = "uk south"
+    service_plan_sku_name = "S1"
+  }
+}
+
+
 Allow_security_rules = {
   "Allow_http" = {
     priority               = 100
@@ -28,31 +45,31 @@ dbapp_environment = {
   }
 }
 
-webapp_environment = {
-  "production" = {
-    serviceplan = {
-      serviceplan531665 = {
-        sku     = "S1"
-        os_type = "Windows"
-      }
-    }
+# webapp_environment = {
+#   "production" = {
+#     serviceplan = {
+#       serviceplan531665 = {
+#         sku     = "S1"
+#         os_type = "Windows"
+#       }
+#     }
 
-    serviceapp = {
-      webappp54658952 = "serviceplan531665"
-    }
-  }
+#     serviceapp = {
+#       webappp54658952 = "serviceplan531665"
+#     }
+#   }
 
-  "staging" = {
-    serviceplan = {
-      serviceplanstage569874 = {
-        sku     = "S1"
-        os_type = "Windows"
-      }
-    }
+#   "staging" = {
+#     serviceplan = {
+#       serviceplanstage569874 = {
+#         sku     = "S1"
+#         os_type = "Windows"
+#       }
+#     }
 
-    serviceapp = {
-      webapppstage89547 = "serviceplanstage569874"
-    }
-  }
+#     serviceapp = {
+#       webapppstage89547 = "serviceplanstage569874"
+#     }
+#   }
 
-}
+# }

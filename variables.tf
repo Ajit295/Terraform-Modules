@@ -14,21 +14,31 @@ variable "dbapp_environment" {
   }))
 }
 
-variable "webapp_environment" {
-  type = map(object({
-    serviceplan = map(object({
-      sku     = string
-      os_type = string
-    }))
+# variable "webapp_environment" {
+#   type = map(object({
+#     serviceplan = map(object({
+#       sku     = string
+#       os_type = string
+#     }))
 
-    serviceapp = map(string)
-  }))
-}
+#     serviceapp = map(string)
+#   }))
+# }
 
 
 variable "Allow_security_rules" {
   type = map(object({
     priority               = number
     destination_port_range = number
+  }))
+}
+
+variable "webapp_environment" {
+  type = map(object({
+    service_plan_os_type  = string
+    webapp_name           = string
+    service_plan_location = string
+    service_plan_sku_name = string
+
   }))
 }

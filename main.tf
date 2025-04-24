@@ -4,6 +4,12 @@ module "ResourceGroup" {
   location  = "North Europe"
 }
 
+module "BackendWebapps" {
+  source              = "./Modules/TrafficManagerWithWebapp/BackendWebapps"
+  resource_group_name = module.ResourceGroup.rg_name_output
+  webapp_environment  = var.webapp_environment
+}
+
 # module "StorageAccount" {
 #     source = "./Modules/StorageAccount"
 #     base_name = "terraformexample01"
@@ -116,6 +122,6 @@ module "ResourceGroup" {
 #   resource_group_name = module.ResourceGroup.rg_name_output
 #   location = module.ResourceGroup.location_output
 #   subnet_id = module.Subnet.subnet_id
-  
+
 # }
 
