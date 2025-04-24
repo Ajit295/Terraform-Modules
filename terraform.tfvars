@@ -19,12 +19,12 @@ webapp_environment = {
 traffic_manager_endpoints = {
   "primaryendpoint" = {
     priority = 1
-    weight = 100
+    weight   = 100
   }
 
   "secondaryendpoint" = {
     priority = 2
-    weight = 100
+    weight   = 100
   }
 }
 

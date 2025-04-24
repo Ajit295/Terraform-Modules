@@ -45,7 +45,7 @@ variable "webapp_environment" {
 
 variable "traffic_manager_endpoints" {
   type = map(object({
-    weight = number
+    weight   = number
     priority = number
   }))
 }
