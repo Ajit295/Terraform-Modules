@@ -5,3 +5,4 @@ README.md
 terraform.tfstate.backup
 .terraform
 .terraform.lock.hcl
+Terraform-Modules.code-workspace
