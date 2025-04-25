@@ -49,10 +49,6 @@ module "Subnet" {
   subnet_names         = var.subnet_names
 }
 
-output "subnet_id" {
-  value = module.Subnet.subnet_id
-}
-
 module "PublicIP" {
   source                 = "./Modules/PublicIP"
   pip_name               = "Ajit-pip-Test"

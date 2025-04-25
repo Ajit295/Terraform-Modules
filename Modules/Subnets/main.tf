@@ -1,3 +1,5 @@
+# Using for each loop to iterate over subnet names to create subnet.
+
 resource "azurerm_subnet" "subnet" {
   for_each = toset(var.subnet_names)
   name                 = each.key
