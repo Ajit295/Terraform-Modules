@@ -1,7 +1,7 @@
-variable "base_name" {
-    type = string
-    description = "Name of the subnet"
-}
+# variable "base_name" {
+#     type = string
+#     description = "Name of the subnet"
+# }
 
 variable "resource_group_name" {
     type = string
@@ -13,8 +13,13 @@ variable "virtual_network_name" {
     description = "name of the virtual network"
 }
 
-variable "no_of_virtual_machines" {
-    type = number
-    description = "No of virtual machines that we want to create"
-    default = 1
+# variable "no_of_virtual_machines" {
+#     type = number
+#     description = "No of virtual machines that we want to create"
+#     default = 1
+# }
+
+variable "subnet_names" {
+  type = list(string)
+  description = "this is name of subnets"
 }

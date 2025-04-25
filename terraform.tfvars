@@ -1,32 +1,58 @@
 no_of_virtual_machines = 2
 
-webapp_environment = {
-  "northeuropeplan09986" = {
-    service_plan_os_type  = "Windows"
-    webapp_name           = "primarywebapp09876"
-    service_plan_location = "North Europe"
-    service_plan_sku_name = "S1"
+subnet_names = ["imageSubnet", "videosubnet", "applicationGatewaySubnet"]
+
+storage_account_details = {
+  "account_prefix"           = "appstore"
+  "account_tier"             = "Standard"
+  "account_replication_type" = "LRS"
+  "account_kind"             = "StorageV2"
+}
+
+container_names = ["scripts", "data"]
+
+blobs = {
+  "install_web_images.sh" = {
+    container_name = "scripts"
+    blob_location  = "./Modules/LinuxVirtualMachine/install_web_images.sh"
   }
 
-  "uksouthplan647580" = {
-    service_plan_os_type  = "Windows"
-    webapp_name           = "secondarywebapp35647"
-    service_plan_location = "uk south"
-    service_plan_sku_name = "S1"
+  "install_web_videos.sh" = {
+    container_name = "scripts"
+    blob_location  = "./Modules/LinuxVirtualMachine/install_web_videos.sh"
   }
 }
 
-traffic_manager_endpoints = {
-  "primaryendpoint" = {
-    priority = 1
-    weight   = 100
-  }
 
-  "secondaryendpoint" = {
-    priority = 2
-    weight   = 100
-  }
-}
+
+
+# webapp_environment = {
+#   "northeuropeplan09986" = {
+#     service_plan_os_type  = "Windows"
+#     webapp_name           = "primarywebapp09876"
+#     service_plan_location = "North Europe"
+#     service_plan_sku_name = "S1"
+#   }
+
+#   "uksouthplan647580" = {
+#     service_plan_os_type  = "Windows"
+#     webapp_name           = "secondarywebapp35647"
+#     service_plan_location = "uk south"
+#     service_plan_sku_name = "S1"
+#   }
+# }
+
+# traffic_manager_endpoints = {
+#   "primaryendpoint" = {
+#     priority = 1
+#     weight   = 100
+#   }
+
+#   "secondaryendpoint" = {
+#     priority = 2
+#     weight   = 100
+#   }
+# }
 
 
 Allow_security_rules = {
@@ -46,16 +72,16 @@ Allow_security_rules = {
   }
 }
 
-dbapp_environment = {
-  "production" = {
-    server = {
-      server895648 = {
-        dbname = "appdb"
-        sku    = "S0"
-      }
-    }
-  }
-}
+# dbapp_environment = {
+#   "production" = {
+#     server = {
+#       server895648 = {
+#         dbname = "appdb"
+#         sku    = "S0"
+#       }
+#     }
+#   }
+# }
 
 # webapp_environment = {
 #   "production" = {

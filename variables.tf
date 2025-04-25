@@ -4,15 +4,35 @@ variable "no_of_virtual_machines" {
   default     = 1
 }
 
-variable "dbapp_environment" {
-  type = map(object({
-    server = map(object({
-      sku    = string
-      dbname = string
-    }))
+variable "subnet_names" {
+  type        = list(string)
+  description = "this is name of subnets"
+}
 
+variable "storage_account_details" {
+  type = map(string)
+}
+
+variable "container_names" {
+  type = list(string)
+}
+
+variable "blobs" {
+  type = map(object({
+    container_name = string
+    blob_location  = string
   }))
 }
+
+# variable "dbapp_environment" {
+#   type = map(object({
+#     server = map(object({
+#       sku    = string
+#       dbname = string
+#     }))
+
+#   }))
+# }
 
 # variable "webapp_environment" {
 #   type = map(object({
@@ -33,19 +53,19 @@ variable "Allow_security_rules" {
   }))
 }
 
-variable "webapp_environment" {
-  type = map(object({
-    service_plan_os_type  = string
-    webapp_name           = string
-    service_plan_location = string
-    service_plan_sku_name = string
+# variable "webapp_environment" {
+#   type = map(object({
+#     service_plan_os_type  = string
+#     webapp_name           = string
+#     service_plan_location = string
+#     service_plan_sku_name = string
 
-  }))
-}
+#   }))
+# }
 
-variable "traffic_manager_endpoints" {
-  type = map(object({
-    weight   = number
-    priority = number
-  }))
-}
+# variable "traffic_manager_endpoints" {
+#   type = map(object({
+#     weight   = number
+#     priority = number
+#   }))
+# }

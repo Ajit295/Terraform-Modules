@@ -4,19 +4,28 @@ module "ResourceGroup" {
   location  = "North Europe"
 }
 
-module "BackendWebapps" {
-  source              = "./Modules/TrafficManagerWithWebapp/BackendWebapps"
-  resource_group_name = module.ResourceGroup.rg_name_output
-  webapp_environment  = var.webapp_environment
-}
+# module "StorageAccountForCustomScriptExtension" {
+#   source = "./Modules/StorageAccountForCustomScriptExtension"
+#   resource_group_name = module.ResourceGroup.rg_name_output
+#   location = module.ResourceGroup.location_output
+#   storage_account_details = var.storage_account_details
+#   container_names = var.container_names
+#   blobs = var.blobs
+# }
 
-module "TrafficManager" {
-  source                    = "./Modules/TrafficManagerWithWebapp/TrafficManager"
-  resource_group_name       = module.ResourceGroup.rg_name_output
-  traffic_manager_endpoints = var.traffic_manager_endpoints
-  webapp_hostname           = module.BackendWebapps.webapp_hostname
-  webapp_ids                = module.BackendWebapps.webapp_ids
-}
+# module "BackendWebapps" {
+#   source              = "./Modules/TrafficManagerWithWebapp/BackendWebapps"
+#   resource_group_name = module.ResourceGroup.rg_name_output
+#   webapp_environment  = var.webapp_environment
+# }
+
+# module "TrafficManager" {
+#   source                    = "./Modules/TrafficManagerWithWebapp/TrafficManager"
+#   resource_group_name       = module.ResourceGroup.rg_name_output
+#   traffic_manager_endpoints = var.traffic_manager_endpoints
+#   webapp_hostname           = module.BackendWebapps.webapp_hostname
+#   webapp_ids                = module.BackendWebapps.webapp_ids
+# }
 
 # module "StorageAccount" {
 #     source = "./Modules/StorageAccount"
@@ -25,22 +34,20 @@ module "TrafficManager" {
 #     location = module.ResourceGroup.location_output
 # }
 
-# module "VirtualNetwork" {
-#   source              = "./Modules/VirtualNetwork"
-#   base_name           = "Ajit-Test-Vnet"
-#   resource_group_name = module.ResourceGroup.rg_name_output
-#   location            = module.ResourceGroup.location_output
-#   depends_on          = [module.ResourceGroup]
-# }
+module "VirtualNetwork" {
+  source              = "./Modules/VirtualNetwork"
+  base_name           = "Ajit-Test-Vnet"
+  resource_group_name = module.ResourceGroup.rg_name_output
+  location            = module.ResourceGroup.location_output
+  depends_on          = [module.ResourceGroup]
+}
 
-# module "Subnet" {
-#   source                 = "./Modules/Subnets"
-#   base_name              = "Subnet-Test"
-#   resource_group_name    = module.ResourceGroup.rg_name_output
-#   virtual_network_name   = module.VirtualNetwork.Vnet_name_output
-#   depends_on             = [module.VirtualNetwork, module.ResourceGroup]
-#   no_of_virtual_machines = var.no_of_virtual_machines
-# }
+module "Subnet" {
+  source               = "./Modules/Subnets"
+  resource_group_name  = module.ResourceGroup.rg_name_output
+  virtual_network_name = module.VirtualNetwork.Vnet_name_output
+  subnet_names         = var.subnet_names
+}
 
 # module "PublicIP" {
 #   source                 = "./Modules/PublicIP"
