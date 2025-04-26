@@ -14,12 +14,12 @@ container_names = ["scripts", "data"]
 blobs = {
   "install_web_images.sh" = {
     container_name = "scripts"
-    blob_location  = "./Modules/LinuxVirtualMachine/install_web_images.sh"
+    blob_location  = "./Modules/Scripts/install_web_images.sh"
   }
 
   "install_web_videos.sh" = {
     container_name = "scripts"
-    blob_location  = "./Modules/LinuxVirtualMachine/install_web_videos.sh"
+    blob_location  = "./Modules/Scripts/install_web_videos.sh"
   }
 }
 
