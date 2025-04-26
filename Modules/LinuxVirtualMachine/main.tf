@@ -23,3 +23,20 @@ resource "azurerm_linux_virtual_machine" "Linux-VM" {
     version   = "latest"
   }
 }
+
+resource "azurerm_virtual_machine_extension" "script" {
+  count = var.no_of_virtual_machines
+  name                 = "install-nginx"
+  virtual_machine_id   = azurerm_linux_virtual_machine.Linux-VM[count.index].id
+  publisher            = "Microsoft.Azure.Extensions"
+  type                 = "CustomScript"
+  type_handler_version = "2.0"
+
+settings = jsonencode({
+    fileUris         = ["https://${var.storage_account_name}.blob.core.windows.net/${var.container_name}/${var.blob_names[count.index]}"]
+    commandToExecute = "sh ${var.blob_names[count.index]}"
+  })
+
+
+depends_on = [ azurerm_linux_virtual_machine.Linux-VM ]
+}

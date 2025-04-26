@@ -1,4 +1,4 @@
-resource "random_integer" "stroage_account_suffix" {
+resource "random_integer" "storage_account_suffix" {
   min = 900000
   max = 1000000
 }

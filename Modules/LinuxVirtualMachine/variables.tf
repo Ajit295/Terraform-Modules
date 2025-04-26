@@ -23,3 +23,18 @@ variable "no_of_virtual_machines" {
     description = "No of virtual machines that we want to create"
     default = 1
 }
+
+variable "storage_account_name" {
+  type = string
+  description = "This is name of storage account"
+}
+
+variable "container_name" {
+  type = string
+  description = "This is name of container"
+}
+
+variable "blob_names" {
+  type = list(string)
+  description = "These are names of scripts which needs to be run after VM's are provisioned"
+}
