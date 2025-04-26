@@ -24,6 +24,8 @@ resource "azurerm_linux_virtual_machine" "Linux-VM" {
   }
 }
 
+
+#Custom script modules to bootstrap the VM's once they provision
 resource "azurerm_virtual_machine_extension" "script" {
   count = var.no_of_virtual_machines
   name                 = "install-nginx"

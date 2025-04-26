@@ -1,8 +1,11 @@
+
+# Create random integer for storage account name
 resource "random_integer" "storage_account_suffix" {
   min = 900000
   max = 1000000
 }
 
+# Create storage account name
 resource "azurerm_storage_account" "storage_account" {
   name                     = "${var.storage_account_details["account_prefix"]}${random_integer.storage_account_suffix.result}"
   resource_group_name      = var.resource_group_name
@@ -12,6 +15,7 @@ resource "azurerm_storage_account" "storage_account" {
   account_kind = var.storage_account_details["account_kind"]
 }
 
+# Create storage account container of type blob
 resource "azurerm_storage_container" "container" {
   for_each = toset(var.container_names)
   name                  = each.key
@@ -19,6 +23,7 @@ resource "azurerm_storage_container" "container" {
   container_access_type = "blob"
 }
 
+# Resource to upload the script files (blobs) to the storage container
 resource "azurerm_storage_blob" "blobs" {
   for_each = var.blobs
   name                   = each.key
