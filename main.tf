@@ -34,7 +34,7 @@ module "NetworkInterface" {
   source                 = "./Modules/NetworkInterface"
   resource_group_name    = module.ResourceGroup.rg_name_output
   location               = module.ResourceGroup.location_output
-  nic_names               = var.nic_names
+  nic_names              = var.nic_names
   subnet_id              = module.Subnet.subnet_id
   public_ip_address_id   = module.PublicIP.public_ip_address_id_output
   depends_on             = [module.ResourceGroup, module.Subnet, module.PublicIP]
