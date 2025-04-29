@@ -24,6 +24,16 @@ variable "blobs" {
   }))
 }
 
+variable "gateway_subnet_details" {
+    type = list(string)
+    description = "Details of subnet details"
+}
+
+variable "nic_names" {
+  type = list(string)
+  description = "These are the name of the network interfaces"
+}
+
 # variable "dbapp_environment" {
 #   type = map(object({
 #     server = map(object({

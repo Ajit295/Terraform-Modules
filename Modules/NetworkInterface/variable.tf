@@ -8,8 +8,8 @@ variable "location" {
     description = "Location of the NIC"
 }
 
-variable "nic_name" {
-    type = string
+variable "nic_names" {
+    type = list(string)
     description = "This is the name of the network interface card"
 }
 

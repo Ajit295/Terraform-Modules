@@ -1,6 +1,6 @@
 resource "azurerm_network_interface" "example" {
   count = var.no_of_virtual_machines
-  name                = "${var.nic_name}-${count.index+1}"
+  name                = "${var.nic_names[count.index]}-${count.index+1}"
   location            = var.location
   resource_group_name = var.resource_group_name
 
