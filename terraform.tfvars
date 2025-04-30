@@ -29,7 +29,6 @@ nic_names = ["imageInterface", "videosInterface"]
 
 
 
-
 # webapp_environment = {
 #   "northeuropeplan09986" = {
 #     service_plan_os_type  = "Windows"
