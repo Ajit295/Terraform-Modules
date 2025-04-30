@@ -35,8 +35,8 @@ resource "azurerm_virtual_machine_extension" "script" {
   type_handler_version = "2.0"
 
 settings = jsonencode({
-    fileUris         = ["https://${var.storage_account_name}.blob.core.windows.net/${var.container_name}/${var.blob_names[count.index]}"]
-    commandToExecute = "sh ${var.blob_names[count.index]}"
+    fileUris         = ["https://${var.storage_account_name}.blob.core.windows.net/${var.container_name}/${var.blob_names}"]
+    commandToExecute = "sh ${var.blob_names}"
   })
 
 

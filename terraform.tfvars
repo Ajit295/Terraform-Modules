@@ -21,11 +21,16 @@ blobs = {
     container_name = "scripts"
     blob_location  = "./Modules/Scripts/install_web_videos.sh"
   }
+
+  "install_web.sh" = {
+    container_name = "scripts"
+    blob_location  = "./Modules/Scripts/install_web.sh"
+  }
 }
 
 gateway_subnet_details = ["defaultGatewaySubnet", "Ajit-Test-Vnet", "10.0.2.0/24"]
 
-nic_names = ["imageInterface", "videosInterface"]
+nic_names = ["networkinterface", "networkinterface"]
 
 
 

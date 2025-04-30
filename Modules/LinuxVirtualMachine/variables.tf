@@ -42,6 +42,6 @@ variable "container_name" {
 }
 
 variable "blob_names" {
-  type = list(string)
+  type = string
   description = "These are names of scripts which needs to be run after VM's are provisioned"
 }
