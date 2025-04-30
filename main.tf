@@ -81,7 +81,7 @@ module "LinuxVirtualMachine" {
   depends_on             = [module.NetworkInterface]
   storage_account_name   = module.StorageAccountForCustomScriptExtension.storage_account_name
   container_name         = module.StorageAccountForCustomScriptExtension.container_name
-  blob_names             = module.StorageAccountForCustomScriptExtension.blob_names[2]
+  blob_names             = module.StorageAccountForCustomScriptExtension.blob_names
 }
 
 

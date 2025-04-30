@@ -15,3 +15,6 @@ module "StorageAccountForCustomScriptExtension" {
 #     location = module.ResourceGroup.location_output
 # }
 
+output "blob_name" {
+  value = module.StorageAccountForCustomScriptExtension.blob_names
+}

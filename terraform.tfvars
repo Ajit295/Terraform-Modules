@@ -12,15 +12,15 @@ storage_account_details = {
 container_names = ["scripts", "data"]
 
 blobs = {
-  "install_web_images.sh" = {
-    container_name = "scripts"
-    blob_location  = "./Modules/Scripts/install_web_images.sh"
-  }
+  # "install_web_images.sh" = {
+  #   container_name = "scripts"
+  #   blob_location  = "./Modules/Scripts/install_web_images.sh"
+  # }
 
-  "install_web_videos.sh" = {
-    container_name = "scripts"
-    blob_location  = "./Modules/Scripts/install_web_videos.sh"
-  }
+  # "install_web_videos.sh" = {
+  #   container_name = "scripts"
+  #   blob_location  = "./Modules/Scripts/install_web_videos.sh"
+  # }
 
   "install_web.sh" = {
     container_name = "scripts"

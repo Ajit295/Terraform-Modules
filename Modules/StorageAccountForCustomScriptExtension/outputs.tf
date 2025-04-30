@@ -1,5 +1,5 @@
 output "blob_names" {
-  value = values(azurerm_storage_blob.blobs)[*].name
+  value = [for blob in azurerm_storage_blob.blobs : blob.name ][0]
 }
 
 output "storage_account_name" {
