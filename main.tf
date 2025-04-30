@@ -41,20 +41,24 @@ module "NetworkInterface" {
   no_of_virtual_machines = var.no_of_virtual_machines
 }
 
-output "nic_names" {
-  value = module.NetworkInterface.nic_details
-}
-
-# module "NSG" {
-#   source                 = "./Modules/NSG"
-#   nsg_name               = "Ajit-NSG-Test"
-#   resource_group_name    = module.ResourceGroup.rg_name_output
-#   location               = module.ResourceGroup.location_output
-#   Allow_security_rules   = var.Allow_security_rules
-#   subnet_id              = module.Subnet.subnet_id
-#   depends_on             = [module.ResourceGroup, module.Subnet]
-#   no_of_virtual_machines = var.no_of_virtual_machines
+# output "nic_names" {
+#   value = module.NetworkInterface.nic_details
 # }
+
+# output "NIC_id_output" {
+#   value = module.NetworkInterface.NIC_id_output
+# }
+
+module "NSG" {
+  source                 = "./Modules/NSG"
+  nsg_name               = "Ajit-NSG-Test"
+  resource_group_name    = module.ResourceGroup.rg_name_output
+  location               = module.ResourceGroup.location_output
+  Allow_security_rules   = var.Allow_security_rules
+  subnet_id              = module.Subnet.subnet_id
+  depends_on             = [module.ResourceGroup, module.Subnet]
+  no_of_virtual_machines = var.no_of_virtual_machines
+}
 
 # module "VirtualMachine" {
 #   source                 = "./Modules/VirtualMachine"
@@ -67,16 +71,17 @@ output "nic_names" {
 
 # }
 
-# module "LinuxVirtualMachine" {
-#   source                 = "./Modules/LinuxVirtualMachine"
-#   vm_name                = "AjitLinuxTestVm"
-#   resource_group_name    = module.ResourceGroup.rg_name_output
-#   location               = module.ResourceGroup.location_output
-#   NIC_id                 = module.NetworkInterface.NIC_id_output
-#   no_of_virtual_machines = var.no_of_virtual_machines
-#   depends_on             = [module.NetworkInterface]
-#   storage_account_name   = module.StorageAccountForCustomScriptExtension.storage_account_name
-#   container_name         = module.StorageAccountForCustomScriptExtension.container_name
-#   blob_names             = module.StorageAccountForCustomScriptExtension.blob_names
-# }
+module "LinuxVirtualMachine" {
+  source                 = "./Modules/LinuxVirtualMachine"
+  vm_name                = "AjitLinuxTestVm"
+  resource_group_name    = module.ResourceGroup.rg_name_output
+  location               = module.ResourceGroup.location_output
+  nic_details            = module.NetworkInterface.nic_details
+  no_of_virtual_machines = var.no_of_virtual_machines
+  depends_on             = [module.NetworkInterface]
+  storage_account_name   = module.StorageAccountForCustomScriptExtension.storage_account_name
+  container_name         = module.StorageAccountForCustomScriptExtension.container_name
+  blob_names             = module.StorageAccountForCustomScriptExtension.blob_names
+}
+
 

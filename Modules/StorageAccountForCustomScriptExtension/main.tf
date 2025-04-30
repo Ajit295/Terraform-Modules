@@ -21,6 +21,7 @@ resource "azurerm_storage_container" "container" {
   name                  = each.key
   storage_account_id    = azurerm_storage_account.storage_account.id
   container_access_type = "blob"
+  depends_on = [ azurerm_storage_account.storage_account ]
 }
 
 # Resource to upload the script files (blobs) to the storage container
@@ -31,4 +32,5 @@ resource "azurerm_storage_blob" "blobs" {
   storage_container_name = each.value.container_name
   type                   = "Block"
   source                 = each.value.blob_location
+  depends_on = [ azurerm_storage_container.container ]
 }

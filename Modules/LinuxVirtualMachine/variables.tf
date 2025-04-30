@@ -13,9 +13,16 @@ variable "location" {
     description = "Name of the location"
 }
 
-variable "NIC_id" {
-    type = list(string)
-    description = "network inteface id"
+# variable "NIC_id" {
+#     type = list(string)
+#     description = "network inteface id"
+# }
+
+variable "nic_details" {
+  type = list(object({
+    name = string
+    id = string
+  }))
 }
 
 variable "no_of_virtual_machines" {

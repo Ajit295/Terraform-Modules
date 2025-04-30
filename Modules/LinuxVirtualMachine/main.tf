@@ -8,7 +8,7 @@ resource "azurerm_linux_virtual_machine" "Linux-VM" {
   admin_password = "Ajit@23091998"
   disable_password_authentication = false
   network_interface_ids = [
-    var.NIC_id[count.index]
+   var.nic_details[count.index].id
   ]
 
   os_disk {
